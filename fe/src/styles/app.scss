@@ -1,0 +1,12 @@
+#user{
+    >a{
+        display: inline-block;
+        padding: 0;
+        text-align: center;
+        >span{
+            display: inline-block;
+            height: 100%;
+            width: 50%;
+        }
+    }
+}
