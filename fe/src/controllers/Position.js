@@ -103,7 +103,7 @@ function list(pageNo,res){
                     pageNo
                 }))
             }else{
-                res.go('/')
+                res.go('/home')
             }
         }
     })
