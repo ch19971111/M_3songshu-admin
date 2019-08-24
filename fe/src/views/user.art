@@ -1,9 +1,11 @@
             <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id='dropdown'>
                 <!-- The user image in the navbar-->
                 {{if isSignin}}
+                <span class="hidden-xs" id= 'signout'>
                 <img src="/public/images/user2-160x160.jpg" class="user-image" alt="User Image">
-                <span >你好，{{userName}}</span>
+                <span>你好，{{userName}}</span>
+                </span>
                 {{/if}}
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 {{if !isSignin}}
@@ -63,7 +65,7 @@
                       <a href="#" class="btn btn-default btn-flat" id="btn-submit">确定</a>
                     {{/if}}
                     {{if isSignin}}
-                      <a href="#" class="btn btn-default btn-flat" id="signout">退出</a>
+                      <a href="#" class="btn btn-default btn-flat" id="btn-signout">退出</a>
                     {{/if}}
                   </div>
                 </li>

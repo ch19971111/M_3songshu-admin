@@ -14,7 +14,7 @@ export default {
        this.bindEventToBtn() // 调用注册登录功能
     },
     bindEventToBtn(){
-        $('.hidden-xs').on('click',function(){
+        $('#user').on('click','.hidden-xs',function(){
             _type  = $(this).attr('id')
             _url   = _type === "signin" ? '/api/users/signin' : '/api/users/signup'
             $('#user-form input').val("")
@@ -30,7 +30,7 @@ export default {
             })
         })
 
-        $('#signout').on('click',()=>{
+        $('#user').on('click','#btn-signout',()=>{
             $.ajax({
                 url:'/api/users/signout',
                 success:this.bindEventSucc.bind(this)
@@ -40,12 +40,12 @@ export default {
     bindEventSucc(result){
         if(_type === 'signin'){
             if(result.ret){
-                // let html =  userView({
-                //     isSignin:result.ret,
-                //     userName:result.data.username
-                // }) 
-                // $('#user').html(html) 
-                location.reload()
+                let html =  userView({
+                    isSignin:result.ret,
+                    userName:result.data.username
+                }) 
+                $('#user').html(html) 
+                // this.isSignin()
             }else{
                 alert(result.data.msg)
             }

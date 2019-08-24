@@ -99,6 +99,7 @@ module.exports = {
     },
     // 退出  退出之后需要把cookie删除
     signout(req,res,next){
+      res.set('content-type', 'application/json;charset=utf-8') 
       req.session  = null  // 删除cookie 的方法
       res.render('succ',{
         data:JSON.stringify({
