@@ -1,8 +1,13 @@
+const tokenUtils    = require('../utils/token')
+
 module.exports= {
-    auth(req,res,next){
+    async auth(req,res,next){
         res.set('content-type', 'application/json;charset=utf-8') 
-        let username = req.session.username
-        if(username){
+        let token  = req.get('x-access-token')
+      
+        let decoded  = await tokenUtils.tokenVerify(token)
+      
+        if(decoded){
             next() 
         }else{
           res.render('fail',{

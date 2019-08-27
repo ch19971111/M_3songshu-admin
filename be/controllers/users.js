@@ -1,6 +1,8 @@
 
 const userModel = require('../models/users')
 const tools    = require('../utils/tools')
+const tokenUtils    = require('../utils/token')
+
 module.exports = {
     // 注册的逻辑  我需要操作数据库 所以我们需要利用mongoose进行控制 我们需要在创建一个文件专门负责连接数据库
     async signup(req,res,next){
@@ -58,6 +60,8 @@ module.exports = {
         if(await tools.compare(password,result.password)){
           // 登录成功之后还需要设置cookie
           req.session.username = username
+          let token = tokenUtils.tokenSign(username)
+          res.set('x-access-token',token)
           res.render('succ',{
             data:JSON.stringify({
               msg:'登录成功',
@@ -74,15 +78,16 @@ module.exports = {
       }
     },
     // 利用保存cookie 的方式来验证是否登录 这里用到了第三方中间件 cookie-session  配置见文档 或者app.js
-    isSignin(req,res,next){
+    async isSignin(req,res,next){
       res.set('content-type', 'application/json;charset=utf-8') 
-      let username = req.session.username
-      if(username){
+      let token  = req.get('x-access-token')
+      let decoded  = await tokenUtils.tokenVerify(token)
+      if(decoded){
         if(req.url == '/isSignin'){
           res.render('succ',{
             data:JSON.stringify({
               msg:'有权限',
-              username
+              username : decoded.username
             })
           })
         }else{
@@ -98,13 +103,14 @@ module.exports = {
       }
     },
     // 退出  退出之后需要把cookie删除
-    signout(req,res,next){
-      res.set('content-type', 'application/json;charset=utf-8') 
-      req.session  = null  // 删除cookie 的方法
-      res.render('succ',{
-        data:JSON.stringify({
-          msg:'退出成功'
-        })
-      })
-    }
+    // signout(req,res,next){
+    //   res.set('content-type', 'application/json;charset=utf-8') 
+    //   // req.session  = null  // 删除cookie 的方法
+    //   res.set('x-access-token','')
+    //   res.render('succ',{
+    //     data:JSON.stringify({
+    //       msg:'退出成功'
+    //     })
+    //   })
+    // }
 }

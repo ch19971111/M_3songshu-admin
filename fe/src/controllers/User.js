@@ -31,15 +31,19 @@ export default {
         })
 
         $('#user').on('click','#btn-signout',()=>{
-            $.ajax({
-                url:'/api/users/signout',
-                success:this.bindEventSucc.bind(this)
-            })
+            // $.ajax({
+            //     url:'/api/users/signout',
+            //     success:this.bindEventSucc.bind(this)
+            // })
+            localStorage.removeItem('x-access-token')
+            location.reload()
         })
     },
-    bindEventSucc(result){
+    bindEventSucc(result,textStatus, jqXHR){
         if(_type === 'signin'){
             if(result.ret){
+                let token = jqXHR.getResponseHeader('x-access-token')
+                localStorage.setItem('x-access-token',token)
                 let html =  userView({
                     isSignin:result.ret,
                     userName:result.data.username
@@ -59,6 +63,9 @@ export default {
     isSignin(){
        return $.ajax({
             url:'/api/users/isSignin',
+            headers:{
+                'x-access-token': localStorage.getItem('x-access-token'),
+            },
             success(result){
                 return result
             }

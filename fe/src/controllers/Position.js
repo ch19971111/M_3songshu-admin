@@ -54,9 +54,13 @@ function bindEvent(res){
 }
 function addReq(res){
     // let data = $('#possave').serialize()
+    
     $('#possave').ajaxSubmit({
         url: '/api/position/position_add',
         type:'POST',
+        headers:{
+            'x-access-token': localStorage.getItem('x-access-token'),
+        },
         success(result){
             if(result){
                 res.back()
@@ -70,6 +74,9 @@ function editFindOne(req,res){
     return $.ajax({
         url:'/api/position/position_findOne',
         type:'POST',
+        headers:{
+            'x-access-token': localStorage.getItem('x-access-token'),
+        },
         data:{
             id:$(req.body.ele).attr('data-id')
         },
@@ -83,6 +90,9 @@ function editSubmit(res,ele){
     $('#possave').ajaxSubmit({
         url: '/api/position/position_edit',
         type:'PATCH',
+        headers:{
+            'x-access-token': localStorage.getItem('x-access-token'),
+        },
         success(result){
             if(result){
                 res.back()
@@ -98,6 +108,9 @@ function remove(res,ele){
         type:'DELETE',
         data:{
             id:$(ele).attr('data-id')
+        },
+        headers:{
+            'x-access-token': localStorage.getItem('x-access-token'),
         },
         success(result){
             if(result.ret){
@@ -115,6 +128,9 @@ function list(pageNo,res){
         data:{
             start:pageNo*step,
             step:step
+        },
+        headers:{
+            'x-access-token': localStorage.getItem('x-access-token'),
         },
         success(result){
             if(result.ret){
@@ -146,6 +162,9 @@ function search(data,res){
         type:"POST",
         data:{
             keywords:data
+        },
+        headers:{
+            'x-access-token': localStorage.getItem('x-access-token'),
         },
         success(result){
             res.render(positionViews({
