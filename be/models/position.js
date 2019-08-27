@@ -1,11 +1,12 @@
 const mongoose =require('../utils/db')
+
 const Model = mongoose.model('positionList',{
     companyName:String,
     positionName:String,
     city:String,
     salary:String,
     createTime:String,
-    salary:String
+    companyLogo:String
 })
 
 module.exports = {
@@ -27,6 +28,13 @@ module.exports = {
     },
     remove(id){
         return Model.remove({_id:id})
+    },
+    search({keywords}){
+        return Model.find({$or:[
+            {companyName:keywords},
+            {positionName:keywords},
+            {city:keywords},
+            {salary:keywords}
+        ]}).sort({_id:-1})
     }
-    
 }

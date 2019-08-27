@@ -10,7 +10,7 @@ import Position from '../controllers/Position'
 // sme-router 中间件
 
 
-$(window).on( 'hashchange', function(e) {
+$(window).on( 'hashchange', function() {
     $(`.sidebar-menu li.nav a[href="${location.hash}"]`)  // 根据哈希来确定哪个需要高亮
     .parent()
     .addClass('active')
@@ -32,5 +32,5 @@ router.route('/position',Position.render)  //职位的hash处理
 router.route('/home',Home.render)  // 参数 第一个是哈希 第二个是一个回调函数 我们可以把回调函数抽出为controller文件里面
 router.route('/position_add',Position.addRender)
 router.route('/position_edit',Position.editRender)
-router.redirect('/home')//设置默认的hash值   '/'
+router.redirect('/position')//设置默认的hash值   '/'
 

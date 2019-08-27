@@ -29,11 +29,12 @@
         <th>岗位薪资</th>
         <th>操作</th>
       </tr>
+      {{if listLength > 0}}
       {{each list}}
       <tr>
         <td>{{$index + 1}}</td>
         <td>
-          <img src="http://placehold.it/50x50" height="50" width="50" alt="">
+          <img src="http://localhost:3000/images/{{$value.companyLogo}}" height="50" width="50" alt="">
         </td>
         <td>{{$value.companyName}}</td>
         <td>{{$value.positionName}}</td>
@@ -52,16 +53,23 @@
         </td>
       </tr>
       {{/each}}
+      {{else}}
+      <tr>
+        <td colspan="8"> 暂无数据. </td>
+      </tr>
+      {{/if}}
     </table>
   </div>
   <!-- /.box-body -->
+  {{if listLength > 0 && total != -1}}
   <div class="box-footer clearfix">
     <ul class="pagination pagination-sm no-margin pull-right">
-      <li><a href="#">&laquo;</a></li>
+      <li  class="direction" id="prev"><a href="javascript: void(0)">&laquo;</a></li>
       {{each total}}
-      <li data-index="{{$index}}" class="{{if $index == pageNo}}active{{/if}}"><a href="#">{{$index +1}}</a></li>
+      <li data-index="{{$index}}" class="{{if $index == pageNo}}active{{/if}}"><a href="javascript: void(0)">{{$index +1}}</a></li>
       {{/each}}
-      <li><a href="#">&raquo;</a></li>
+      <li  class="direction" id="next"><a href="javascript: void(0)">&raquo;</a></li>
     </ul>
   </div>
+  {{/if}}
 </div>

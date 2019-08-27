@@ -3,7 +3,6 @@ const moment   = require('moment')
 module.exports = {
     async list(req, res, next) {
       res.set('content-type', 'application/json;charset=utf-8') 
-      console.log(req.query)
       let result = await posModel.find(req.query)
       if(await result){
         res.render('succ',{
@@ -17,8 +16,10 @@ module.exports = {
     async add(req,res,next){
       let result = await posModel.save({
         ...req.body,
-        createTime: moment().format('YYYY-MM-DD hh:mm:ss')
+        createTime: moment().format('YYYY-MM-DD hh:mm:ss'),
+        companyLogo:req.filename
       })
+      // console.log(req.filename,result.companyLogo)
       if(result){
         res.render('succ',{
           data:JSON.stringify({
@@ -42,16 +43,24 @@ module.exports = {
       }
     },
     async edit(req,res,next){
-      console.log(req.body)
-      let result = await posModel.edit({
+      console.log(req.body,req.filename)
+      let data  = {
         ...req.body,
-        createTime: moment().format('YYYY-MM-DD hh:mm:ss')
-      })
-      res.render('succ',{
-        data:JSON.stringify({
-          msg:'信息修改成功'
+        createTime: moment().format('YYYY-MM-DD hh:mm:ss'),
+      }
+     if(req.filename != ''){
+       data.companyLogo = req.filename
+     }else{
+       delete data.companyLogo
+     }
+      let result = await posModel.edit(data)
+      if(result){
+        res.render('succ',{
+          data:JSON.stringify({
+            msg:'信息修改成功'
+          })
         })
-      })
+      }
     },
     async remove(req,res,next){
       let result = await posModel.remove(req.body.id)
@@ -68,5 +77,16 @@ module.exports = {
           })
         })
       }
+    },
+    async search(req,res,next){
+      let result = await posModel.search(req.body)
+     if(result){
+      res.render('succ',{
+        data:JSON.stringify({
+          list : result,
+          total : -1
+        })
+      })
+     }
     }
   }
