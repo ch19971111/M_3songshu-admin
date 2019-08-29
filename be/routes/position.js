@@ -14,6 +14,7 @@ router.post('/position_findOne',authMiddlewrares.auth,Position.findOne)
 router.patch('/position_edit',authMiddlewrares.auth,fileUplodaMiddlewrares,Position.edit)
 router.delete('/position_remove',authMiddlewrares.auth,Position.remove)
 router.post('/position_search',authMiddlewrares.auth,Position.search)
+router.get('/viplist',authMiddlewrares.auth,Position.findAll)
 
 
 module.exports = router

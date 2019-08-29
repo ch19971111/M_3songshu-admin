@@ -15,7 +15,8 @@ module.exports = {
     // 启一个服务
     devServer : {
         contentBase: path.resolve(__dirname,'../dev'),
-        port       : 8000,
+        port       : '7000',
+        host       : '10.60.15.70',
         // 做个代理
         proxy: {
           '/api': {

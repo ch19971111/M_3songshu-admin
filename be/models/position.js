@@ -36,5 +36,8 @@ module.exports = {
             {city:keywords},
             {salary:keywords}
         ]}).sort({_id:-1})
+    },
+    findAll(){
+        return Model.find().sort({_id:-1})
     }
 }

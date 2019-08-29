@@ -1,44 +1,44 @@
 <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">职位添加</h3>
+          <h3 class="box-title">商品添加</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
         <form class="form-horizontal" id="possave"  enctype="multipart/form-data">
           <div class="box-body">
             <div class="form-group">
-              <label for="companyLogo" class="col-sm-2 control-label">公司Logo</label>
+              <label for="companyLogo" class="col-sm-2 control-label">商品图片</label>
       
               <div class="col-sm-10">
-                <input type="file" class="form-control" name="companyLogo" id="companyLogo" placeholder="请选择公司logo图片">
+                <input type="file" class="form-control" name="companyLogo" id="companyLogo" placeholder="请选择商品图片">
               </div>
             </div>
             <div class="form-group">
-              <label for="companyName" class="col-sm-2 control-label">公司名称</label>
+              <label for="companyName" class="col-sm-2 control-label">商品标题</label>
       
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="companyName" id="companyName" placeholder="请输入公司名称">
+                <input type="text" class="form-control" name="companyName" id="companyName" placeholder="请输入商品标题">
               </div>
             </div>
             <div class="form-group">
-              <label for="positionName" class="col-sm-2 control-label">职位名称</label>
+              <label for="positionName" class="col-sm-2 control-label">商品数量</label>
       
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="positionName" id="positionName" placeholder="请输入职位名称">
+                <input type="text" class="form-control" name="positionName" id="positionName" placeholder="请输入商品数量(可以输入数量描述)">
               </div>
             </div>
             <div class="form-group">
-              <label for="city" class="col-sm-2 control-label">工作地点</label>
+              <label for="city" class="col-sm-2 control-label">商品价格</label>
       
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="city" id="city" placeholder="请输入工作地点">
+                <input type="text" class="form-control" name="city" id="city" placeholder="请输入商品价格">
               </div>
             </div>
             <div class="form-group">
-              <label for="salary" class="col-sm-2 control-label">岗位薪资</label>
+              <label for="salary" class="col-sm-2 control-label">松鼠币</label>
       
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="salary" id="salary" placeholder="请输入岗位薪资">
+                <input type="text" class="form-control" name="salary" id="salary" placeholder="请输入需要的松鼠币数量">
               </div>
             </div>
           </div>

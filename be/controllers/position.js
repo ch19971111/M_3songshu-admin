@@ -88,5 +88,15 @@ module.exports = {
         })
       })
      }
+    },
+    async findAll(req,res,next){
+      let result = await posModel.findAll()
+      if(result){
+        res.render('succ',{
+          data:JSON.stringify({
+            list : result
+          })
+        })
+      }
     }
   }
