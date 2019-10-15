@@ -34,7 +34,7 @@
       <tr>
         <td>{{$index + 1}}</td>
         <td>
-          <img src="http://localhost:3000/images/{{$value.companyLogo}}" height="50" width="50" alt="">
+          <img src="http://10.60.15.70:3000/images/{{$value.companyLogo}}" height="50" width="50" alt="">
         </td>
         <td>{{$value.companyName}}</td>
         <td>{{$value.positionName}}</td>
